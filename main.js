@@ -149,6 +149,40 @@ async function reduceActions() {
     return result
 }
 
+async function increaseActions() {
+
+    console.log("fetching actions")
+
+
+    try {
+        var response = await fetch(endPoint+"add")
+
+        if (!response.ok) {
+            
+            throw new Error("HTTP error: " + response.status);
+            
+            
+        }
+    }
+    catch (error) {
+        imgEl.alt = error.message
+        console.log(error.message)
+    }
+    console.log("Fetched resource")
+
+
+    const result = await response.json()
+
+    
+
+    console.log(result.actions)
+
+    interactions = result.actions
+    updateInteractions()
+
+    return result
+}
+
 setInterval(getActions, 1000)
 
 

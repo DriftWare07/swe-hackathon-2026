@@ -28,3 +28,9 @@ async def sub():
     global actions
     actions -= 1
     return
+
+@app.get("/add")
+async def add():
+    global actions
+    actions += 1
+    return
