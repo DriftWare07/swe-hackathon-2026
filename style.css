@@ -1,4 +1,6 @@
  body {
+    display: block;
+    margin: 0 auto;
      background-color: #f6e8e0;
      width: 720px;
      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
@@ -15,11 +17,50 @@
  }
 
  img {
+    
+     display: block;
+    margin: 0 auto;
+     width: 280px;
+    background-image: linear-gradient(to bottom, rgb(146, 206, 255), rgb(192, 255, 246));
+    border: #e8d282 solid 20px;
+    border-radius: 10px;
+     
+ }
+
+ #clarice-container{
     display: block;
     margin: 0 auto;
      width: 280px;
-     
-     
+ }
+
+ .toolbar{
+    display: flex;
+    justify-content: space-around;
+    
+ }
+
+ button{
+    margin:5px;
+    background-color: #f7f3b7;
+    font-size: 24px;
+    border-radius: 24px;
+    padding: 10px;
+    border: solid #fa6e79 10px;
+
+    box-shadow: #efdc96 0px 10px 1px;
+
+    transition: all 0.3s ease-in;
+ }
+
+ button:hover{
+    box-shadow: #efdc96 0px 5px 1px;
+    transform: translateY(5px);
+ }
+
+ button:active{
+    transform: translateY(10px);
+    box-shadow: #efdc96 0px 1px 1px;
+    transition: all 0.1s ease-in;
  }
 
 .bounce{
