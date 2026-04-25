@@ -109,7 +109,16 @@ async function getActions() {
 
     console.log(result.actions)
 
+    
+    timeNotSpent += result.actions - interactions
     interactions = result.actions
+
+    if(timeNotSpent > 7){
+        makeSick()
+    }
+
+    console.log(timeNotSpent)
+
     updateInteractions()
 
     return result
