@@ -50,6 +50,7 @@
     box-shadow: #efdc96 0px 10px 1px;
 
     transition: all 0.3s ease-in;
+    
  }
 
  button:hover{
@@ -61,6 +62,21 @@
     transform: translateY(10px);
     box-shadow: #efdc96 0px 1px 1px;
     transition: all 0.1s ease-in;
+ }
+
+ progress{
+    height: 64px;
+    width: 512px;
+    transform: skewX(-20deg);
+ }
+
+ #timer{
+    background-color: #c878af;
+    transform: skewX(-10deg);
+    width: 90%;
+    margin: 0 auto;
+    color: white;
+    margin-top: 10px;
  }
 
 .bounce{

@@ -10,14 +10,19 @@
 <body>
     <header>
         <h1>FlaminGO TAKE UR PILLS</h1>
+        <progress id="bar" value="0" max="10"></progress>
     </header>
-<h1 id="timer">10hr</h1>
+
+
+<h1 id="timer">0 actions left</h1>
+
+<button onclick="increaseInteractions()">+</button>
     <main>
         <div id="clarice-container">
             <img id="clarice" class="bounce" src="./assets/clarice.png">
             <br>
             <div class="toolbar">
-            <button>Play</button>
+            <button onclick="play()" >Play</button>
             <button>Brush</button>
             <button>Feed</button>
             </div>

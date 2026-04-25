@@ -5,16 +5,24 @@ function $(id){
 
 let clarice = $("clarice")
 let time = $("timer")
+let bar = $("bar")
 
-let currentDate = new Date()
-
-let nextDate = new Date()
-
+let healthyImage = "./assets/clarice.png"
 
 
+let interactions = 0;
+
+let timeNotSpent = 0;
+
+let happiness = 0;
+
+let endPoint = "http://127.0.0.1:8000/"
 
 
-console.log(nextDate)
+
+
+
+
 
 function makeSick(){
     clarice.classList.remove("bounce")
@@ -25,46 +33,123 @@ function makeSick(){
 function makeHealthy(){
     clarice.classList.remove("sad")
     clarice.classList.add("bounce")
-    clarice.src = "./assets/clarice.png"
+    clarice.src = healthyImage
 }
 
 
-
-
-
-function getNextDate(){
-    nextDate.setDate(currentDate.getDate()+1)
-    
-    //nextDate.setHours(currentDate.hours)
-}
-
-function updateTimer(){
-    currentDate = new Date();
+function increaseInteractions(){
+    interactions += 1;
+    updateInteractions()
+    timeNotSpent += 1;
+    if (timeNotSpent > 7){
+        makeSick()
+    }
 
     
 
-    time.textContent = getTimeLeft()
+}
+
+function updateInteractions(){
+time.textContent = interactions + ' actions left'
+}
+
+function play(){
+
+    if(interactions <= 0){
+        return
+    }
+
+    happiness += 1
+    
+    //interactions -= 1;
+    timeNotSpent = 0;
+    updateInteractions()
+
+    makeHealthy()
+
+    if(happiness >= 10){
+        happiness = 0
+        hatTime()
+    }
+    bar.value = happiness
+    reduceActions()
+
+}
+
+function hatTime(){
+makeHealthy()
+clarice.src = "./assets/clarice-hat.png"
+}
+
+async function getActions() {
+
+    console.log("fetching actions")
+
+
+    try {
+        var response = await fetch(endPoint)
+
+        if (!response.ok) {
+            imgEl.alt = "No image found for that breed :("
+            throw new Error("HTTP error: " + response.status);
+            
+            
+        }
+    }
+    catch (error) {
+        imgEl.alt = error.message
+        console.log(error.message)
+    }
+    console.log("Fetched resource")
+
+
+    const result = await response.json()
+
     
 
+    console.log(result.actions)
 
+    interactions = result.actions
+    updateInteractions()
+
+    return result
 }
 
-function getTimeLeft(timeout) {
-    return msToTime(new Date() - nextDate)
+async function reduceActions() {
+
+    console.log("fetching actions")
+
+
+    try {
+        var response = await fetch(endPoint+"sub")
+
+        if (!response.ok) {
+            
+            throw new Error("HTTP error: " + response.status);
+            
+            
+        }
+    }
+    catch (error) {
+        imgEl.alt = error.message
+        console.log(error.message)
+    }
+    console.log("Fetched resource")
+
+
+    const result = await response.json()
+
+    
+
+    console.log(result.actions)
+
+    interactions = result.actions
+    updateInteractions()
+
+    return result
 }
 
-function msToTime(duration) {
-  var milliseconds = Math.floor((duration % 1000) / 100)*-1,
-    seconds = Math.floor((duration / 1000) % 60)*-1,
-    minutes = Math.floor((duration / (1000 * 60)) % 60)*-1,
-    hours = Math.floor((duration / (1000 * 60 * 60)) % 24)*-1;
+setInterval(getActions, 1000)
 
-  hours = (hours < 10) ? "0" + hours : hours;
-  minutes = (minutes < 10) ? "0" + minutes : minutes;
-  seconds = (seconds < 10) ? "0" + seconds : seconds;
 
-  return hours + ":" + minutes + ":" + seconds;
-}
 
-getNextDate()
-setInterval(updateTimer, 1)
