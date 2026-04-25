@@ -1,11 +1,60 @@
- body { 
-background-color:cornsilk ;
-width: 720px;
-font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif}
-;
+ body {
+     background-color: #f6e8e0;
+     width: 720px;
+     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+ }
 
-header{
-        background-color: peachpuff;}
- img{width: 280px;}
-        
+ h1{
+    text-align: center;
+ }
+
+ header {
+     background-color: #9a4d76;
+     text-align: center;
+     color: white;
+ }
+
+ img {
+    display: block;
+    margin: 0 auto;
+     width: 280px;
+     
+     
+ }
+
+.bounce{
+    animation-name: bounce;
+     animation-duration: 1s;
+     animation-iteration-count: infinite;
+     animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.sad{
     
+ animation-name: sad;
+     animation-duration: 2s;
+     animation-iteration-count: infinite;
+     animation-timing-function: ease-out;
+}
+
+
+ @keyframes bounce {
+    0%{
+        transform: translateY(0px) scaleX(1);
+    }
+    50%{
+        transform: translateY(20px) scaleX(1.1);
+    }
+ }
+
+ @keyframes sad {
+
+    0%{
+        transform: scaleX(1) scaleY(1);
+    }
+
+    50%{
+        transform: scaleX(1.1) scaleY(0.95);
+    }
+    
+ }
